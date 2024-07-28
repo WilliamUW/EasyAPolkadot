@@ -10,6 +10,12 @@ https://github.com/WilliamUW/EasyAPolkadotUnity
 - Running start to view demo : `yarn start`
 - To view the demo app in the browser after running the above steps navigate to [http://localhost:8080](http://localhost:8080)
 
+## Demo
+
+https://www.youtube.com/watch?v=3NPjDRycH_g
+
+## Explanation
+
 ## Screenshots
 
 <img width="1280" alt="Screenshot 2024-07-28 at 12 17 56 AM" src="https://github.com/user-attachments/assets/f1a69b70-56ac-4a13-8d82-66f9568bc5f8">
