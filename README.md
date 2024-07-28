@@ -9,3 +9,12 @@ https://github.com/WilliamUW/EasyAPolkadotUnity
 - Direct to package\demo: `cd .\packages\demo\`
 - Running start to view demo : `yarn start`
 - To view the demo app in the browser after running the above steps navigate to [http://localhost:8080](http://localhost:8080)
+
+## Screenshots
+
+<img width="1280" alt="Screenshot 2024-07-28 at 12 17 56 AM" src="https://github.com/user-attachments/assets/f1a69b70-56ac-4a13-8d82-66f9568bc5f8">
+<img width="1280" alt="Screenshot 2024-07-28 at 12 17 52 AM" src="https://github.com/user-attachments/assets/8b7a2bb4-f824-4c95-8a83-970d0afbd28c">
+<img width="1280" alt="Screenshot 2024-07-28 at 12 16 30 AM" src="https://github.com/user-attachments/assets/3566f5f4-1a1b-4052-b574-3e214ea2c331">
+<img width="1280" alt="Screenshot 2024-07-28 at 12 16 04 AM" src="https://github.com/user-attachments/assets/435f7d35-f8b9-4de6-b328-fbecd7d3faa3">
+<img width="1280" alt="Screenshot 2024-07-28 at 11 05 12 AM" src="https://github.com/user-attachments/assets/15076c18-bad6-448b-bdc9-307863dc7cdd">
+<img width="1280" alt="Screenshot 2024-07-28 at 11 04 57 AM" src="https://github.com/user-attachments/assets/22ff1b65-1bcc-4ec4-b90b-8cd42486e769">
