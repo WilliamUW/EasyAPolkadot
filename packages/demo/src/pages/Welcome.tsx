@@ -50,7 +50,7 @@ function Component ({ className }: Props): React.ReactElement {
           rightLogo={<Web3OnboardLogo/>}
         />
       </div>
-      <div className='__welcome-content__text'>Welcome to the Polkadot Playground!</div>
+      <div className='__welcome-content__text'>Welcome to the PolkaVerse!</div>
       <div className={CN('__welcome-content__sub-text', {
         '-isMobile': !isWebUI
       })}>Select your wallet from the provided options to get started.</div>

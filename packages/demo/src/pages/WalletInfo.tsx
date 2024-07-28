@@ -3,7 +3,7 @@
 
 import React, { useContext, useEffect, useState } from 'react'
 
-import AccountList from '../components/account/AccountList'
+import AccountList, {items} from '../components/account/AccountList'
 import WalletMetadata from '../components/sub_action/metadata/WalletMetadata'
 import { useNavigate } from 'react-router-dom'
 import { useConnectWallet, useSetChain } from '@subwallet-connect/react'
@@ -72,13 +72,19 @@ function Component({ className }: Props): React.ReactElement {
       </div>
       {/* <Game /> */}
       {!showGame ? (
-        <Button
-          className={CN('__wallet-btn', '__sub-wallet-sign-btn')}
-          onClick={() => setShowGame(true)}
-          block={true}
-        >
-          Start Game!
-        </Button>
+        <div>
+          <p>Available Items for PolkaVerse:</p>
+          {items.map((item, index) => (
+            <p>#{index + 1}. {item.name}</p>
+          ))}
+          <Button
+            className={CN('__wallet-btn', '__sub-wallet-sign-btn')}
+            onClick={() => setShowGame(true)}
+            block={true}
+          >
+            Start Game!
+          </Button>
+        </div>
       ) : (
         <iframe
           src="http://localhost:51833/"

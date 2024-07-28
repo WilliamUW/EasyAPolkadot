@@ -83,7 +83,7 @@ function Component ({ visible, className }: Props): React.ReactElement<Props> {
             <div className={CN('__header-static')}>
               <div className={CN('__header-logo')} dangerouslySetInnerHTML={{__html: LogoHeader}} />
               <div className={CN('__header-title')}>
-                Polkadot Playground
+                PolkaVerse
               </div>
             </div>
             <div className={CN('__header-action')}>

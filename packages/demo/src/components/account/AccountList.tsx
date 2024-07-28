@@ -36,7 +36,7 @@ type AccountMapType = {
   index: number
 }
 
-const items = [
+export const items = [
   {
     id: 1,
     name: 'Brown Wooden Cube',
@@ -306,6 +306,7 @@ function Component({
               </div>
             ))}
           </div>
+
         </div>
       )
 
