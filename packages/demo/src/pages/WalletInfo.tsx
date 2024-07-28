@@ -87,7 +87,7 @@ function Component({ className }: Props): React.ReactElement {
         </div>
       ) : (
         <iframe
-          src="http://localhost:61353/"
+          src="http://localhost:50602/"
           height="800px"
           width="100%"
         ></iframe>

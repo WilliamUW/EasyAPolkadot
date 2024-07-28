@@ -39,33 +39,33 @@ type AccountMapType = {
 export const items = [
   {
     id: 1,
-    name: 'Brown Wooden Cube',
+    name: 'Cube',
     imageUrl:
-      'https://cdn.discordapp.com/attachments/1234940320408539178/1266774052882878464/Screenshot_2024-07-27_at_11.03.58_AM.png?ex=66a65ec5&is=66a50d45&hm=61f3c9ab1c9eb2f4ab489187334045b23dda4b9bb7dc24e25c8e4a44e0993130&'
+      'https://cdn.discordapp.com/attachments/1234940320408539178/1266774052882878464/Screenshot_2024-07-27_at_11.03.58_AM.png?ex=66a7b045&is=66a65ec5&hm=6bb65a0349379b535f3665caf04056db73ca85edc0bc78cf25708b030f957fc3&'
   },
   {
     id: 2,
-    name: 'Blue Plastic Sphere',
+    name: 'Sphere',
     imageUrl:
-      'https://media.discordapp.net/attachments/1234940320408539178/1266774053872599051/Screenshot_2024-07-27_at_11.06.10_AM.png?ex=66a65ec5&is=66a50d45&hm=e787e73caa4918c22fd938a08458841941950f4fecda6feefe4b2c2ff97b246c&=&format=webp&quality=lossless&width=1168&height=1038'
+      'https://media.discordapp.net/attachments/1234940320408539178/1266774053872599051/Screenshot_2024-07-27_at_11.06.10_AM.png?ex=66a7b045&is=66a65ec5&hm=62030a7af940982b49b2cd72212950601ea06722649021c590f5eba650db1f80&=&format=webp&quality=lossless&width=1168&height=1038'
   },
   {
     id: 3,
     name: 'Cute Green Alien',
     imageUrl:
-      'https://media.discordapp.net/attachments/1234940320408539178/1266774094716731422/Screenshot_2024-07-27_at_11.06.34_AM.png?ex=66a65ecf&is=66a50d4f&hm=abfbe920148637edd57663696ee771a278df357727a48cf8bceccbbbafd255e0&=&format=webp&quality=lossless&width=1187&height=1038'
+      'https://media.discordapp.net/attachments/1234940320408539178/1266774094716731422/Screenshot_2024-07-27_at_11.06.34_AM.png?ex=66a7b04f&is=66a65ecf&hm=501b04604ab901da1e9deba2d9ff12eef17e735a706a8a68f466933349c6d882&=&format=webp&quality=lossless&width=1187&height=1038'
   },
   {
     id: 4,
     name: 'Cute Red Alien',
     imageUrl:
-      'https://media.discordapp.net/attachments/1234940320408539178/1266774093890453615/Screenshot_2024-07-27_at_11.06.38_AM.png?ex=66a65ecf&is=66a50d4f&hm=0d6ed374ae87af08f670a443b57de323c811c48cfa3d1527665c3c30ff8e2b6b&=&format=webp&quality=lossless&width=1152&height=1038'
+      'https://media.discordapp.net/attachments/1234940320408539178/1266774093890453615/Screenshot_2024-07-27_at_11.06.38_AM.png?ex=66a7b04f&is=66a65ecf&hm=9492b05fc458dc02409793402d88b8081ededa9944bf3bf7c7bfbc23fdfeca67&=&format=webp&quality=lossless&width=1152&height=1038'
   },
   {
     id: 5,
     name: 'Castle',
     imageUrl:
-      'https://media.discordapp.net/attachments/1234940320408539178/1266774095823896688/Screenshot_2024-07-27_at_11.06.28_AM.png?ex=66a65ecf&is=66a50d4f&hm=fd9d7b88620872951e28f90d58bc21a45f1a7015330e6fa81291678d6f0e031c&=&format=webp&quality=lossless&width=1076&height=1038'
+      'https://media.discordapp.net/attachments/1234940320408539178/1266774095823896688/Screenshot_2024-07-27_at_11.06.28_AM.png?ex=66a7b04f&is=66a65ecf&hm=cff2657b5218816b9d8c1186a8a6892ede19855f20bf8a3c50331e05816143fd&=&format=webp&quality=lossless&width=1076&height=1038'
   },
   {
     id: 6,
@@ -75,7 +75,7 @@ export const items = [
   },
   {
     id: 7,
-    name: 'Brown Wood Cone',
+    name: 'Cone',
     imageUrl:
       'https://media.discordapp.net/attachments/1234940320408539178/1266774054774378506/Screenshot_2024-07-27_at_11.05.08_AM.png?ex=66a65ec6&is=66a50d46&hm=db373250f91855dd261f45ddede9a4afd999d26500c58750803c5a341e391a57&=&format=webp&quality=lossless&width=995&height=918'
   },
@@ -93,9 +93,9 @@ export const items = [
   },
   {
     id: 10,
-    name: 'White Wood Cylinder',
+    name: 'Cylinder',
     imageUrl:
-      'https://media.discordapp.net/attachments/1234940320408539178/1266774053327343667/Screenshot_2024-07-27_at_11.06.18_AM.png?ex=66a65ec5&is=66a50d45&hm=cadc8b004bdcaeadeac0b2a8e9d2ea5df07f53299b8da9474a645a97b35708f8&=&format=webp&quality=lossless&width=796&height=1038'
+      'https://media.discordapp.net/attachments/1234940320408539178/1266774053327343667/Screenshot_2024-07-27_at_11.06.18_AM.png?ex=66a7b045&is=66a65ec5&hm=a290de9a53beeb89b91b3ef03324e18ca07013aa257439765df2c114bf916360&=&format=webp&quality=lossless&width=796&height=1038'
   }
 ]
 
