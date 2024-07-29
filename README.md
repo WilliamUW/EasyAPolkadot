@@ -23,6 +23,10 @@ For tracking asset urls for each wallet
 
 https://github.com/WilliamUW/EasyAPolkadot/blob/main/contracts/WalletAssets.sol
 
+Deployed on Moonbeam testnet:
+
+https://moonbase.moonscan.io/address/0x632e69488e25f1bec16a11cf1aa7b2261f2b94ef#code
+
 ## Screenshots
 
 <img width="1280" alt="Screenshot 2024-07-28 at 12 17 56 AM" src="https://github.com/user-attachments/assets/f1a69b70-56ac-4a13-8d82-66f9568bc5f8">
