@@ -1,7 +1,6 @@
 # PolkaVerse
 
-## Unity WebGL Repo
-https://github.com/WilliamUW/EasyAPolkadotUnity
+Unity WebGL Repo: https://github.com/WilliamUW/EasyAPolkadotUnity
 
 ## Instructions
 - Install the dependencies: `yarn install` (if running a M1 mac - `yarn install-m1-mac`)
