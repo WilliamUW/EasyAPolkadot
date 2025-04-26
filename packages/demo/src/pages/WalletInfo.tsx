@@ -82,7 +82,7 @@ function Component({ className }: Props): React.ReactElement {
             onClick={() => setShowGame(true)}
             block={true}
           >
-            Start Game!
+            Start Physics Sandbox!
           </Button>
         </div>
       ) : (

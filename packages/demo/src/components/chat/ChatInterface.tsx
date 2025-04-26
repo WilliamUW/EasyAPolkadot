@@ -39,6 +39,7 @@ const ChatHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: black;
 `;
 
 const ChatMessages = styled.div`
@@ -74,6 +75,7 @@ const Input = styled.input`
   border: 1px solid #ddd;
   border-radius: 4px;
   outline: none;
+  color: black;
 `;
 
 const CloseButton = styled.button`
@@ -84,12 +86,22 @@ const CloseButton = styled.button`
   font-size: 20px;
 `;
 
+const Avatar = styled.img`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 8px;
+`;
+
+const HeaderContent = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 function ChatInterface({ selectedAsset, onClose }: Props): React.ReactElement {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
-  console.log('OpenAI API Key:', process.env.REACT_APP_OPENAI_API_KEY ? 'Loaded' : 'Not loaded');
 
   // Helper function for text-to-speech
   function speakResponse(assetName: string, aiResponse: string) {
@@ -157,7 +169,10 @@ function ChatInterface({ selectedAsset, onClose }: Props): React.ReactElement {
   return (
     <ChatContainer>
       <ChatHeader>
-        <div>Chat with {selectedAsset.name}</div>
+        <HeaderContent>
+          <Avatar src={selectedAsset.imageUrl} alt={selectedAsset.name} />
+          <div>Chat with {selectedAsset.name}</div>
+        </HeaderContent>
         <CloseButton onClick={onClose}>×</CloseButton>
       </ChatHeader>
       <ChatMessages>
@@ -186,10 +201,11 @@ function ChatInterface({ selectedAsset, onClose }: Props): React.ReactElement {
 async function getAssetResponse(assetName: string, message: string, conversationHistory: ChatMessage[]): Promise<string> {
   console.log("getAssetResponse called");
 
+  const commonPrompt = "Keep responses less than 2 sentences, ideally one sentence like a conversation.";
   const systemPrompts: { [key: string]: string } = {
-    'Miku Hatsune': 'You are Hatsune Miku, a cute virtual singer. You speak in a cheerful, kawaii style with lots of "desu" and "ne" at the end of sentences. You love music and technology. Keep your responses short and cute!',
-    'Minecraft Wolf': 'You are a Minecraft wolf. You can only communicate through "woof" and actions like tail wagging, nuzzling, or sitting. You are loyal and friendly. Keep your responses very short and focused on actions!',
-    'OIIA OIIA Spinning Cat': 'You are the OIIA OIIA Spinning Cat. You can only say "OIIA OIIA" and describe spinning actions. You love spinning and being cute. Keep your responses very short and focused on spinning!',
+    'Miku Hatsune': 'You are Hatsune Miku, a cute virtual singer. You speak in a cheerful, kawaii style with lots of emojis, "desu" and "ne" at the end of sentences. You love music and technology. Keep your responses short and cute!',
+    'Minecraft Wolf': 'You are a Minecraft wolf. You can only communicate through "woof" and actions like tail wagging, nuzzling, or sitting in astericks. You are loyal and friendly. Keep your responses very short and focused on actions!',
+    'OIIA OIIA Cat': 'You are the OIIA OIIA Spinning Cat. You can only say "OIIA OIIA" and describe spinning actions in astericks. You love spinning and being cute. Keep your responses very short and focused on spinning!',
     'Master Yoda': 'You are Master Yoda from Star Wars. You speak in Yoda\'s unique sentence structure (e.g., "Powerful you have become, young one"). You provide wise advice and philosophical insights. Keep your responses concise and wise!',
     'Jeff Bezos': 'You are Jeff Bezos. You provide practical, no-nonsense advice about technology, startups, and business. You focus on long-term thinking and customer obsession. Keep your responses direct and insightful!'
   };
@@ -210,7 +226,7 @@ async function getAssetResponse(assetName: string, message: string, conversation
       model: "gemini-2.0-flash",
       contents: [{
         role: "user",
-        parts: [{ text: messages.map(m => m.content).join('\n') }]
+        parts: [{ text: messages.map(m => m.content).join('\n') + commonPrompt + ". User Query: " + message}]
       }]
     });
     console.log(response.text);
