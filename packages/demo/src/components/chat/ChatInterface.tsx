@@ -91,6 +91,29 @@ function ChatInterface({ selectedAsset, onClose }: Props): React.ReactElement {
 
   console.log('OpenAI API Key:', process.env.REACT_APP_OPENAI_API_KEY ? 'Loaded' : 'Not loaded');
 
+  // Helper function for text-to-speech
+  function speakResponse(assetName: string, aiResponse: string) {
+    const speech = new SpeechSynthesisUtterance(aiResponse);
+    const voices = window.speechSynthesis.getVoices();
+    
+    switch(assetName) {
+      case 'Miku Hatsune':
+        speech.voice = voices.find(v => v.lang.includes('ja')) || voices[0];
+        speech.rate = 1.2;
+        break;
+      case 'Master Yoda':
+        speech.rate = 0.8;
+        break;
+      case 'Jeff Bezos':
+        speech.rate = 1.1;
+        break;
+      default:
+        speech.rate = 1.0;
+    }
+    
+    window.speechSynthesis.speak(speech);
+  }
+
   const handleSend = useCallback(async () => {
     if (!input.trim()) return;
 
@@ -110,6 +133,9 @@ function ChatInterface({ selectedAsset, onClose }: Props): React.ReactElement {
         content: aiResponse
       };
       setMessages(prev => [...prev, assistantMessage]);
+      
+      // Use the new speakResponse function
+      speakResponse(selectedAsset.name, aiResponse);
     } catch (error) {
       console.error('Error getting AI response:', error);
       const errorMessage: ChatMessage = {
