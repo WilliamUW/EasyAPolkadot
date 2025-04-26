@@ -16,6 +16,11 @@ contract WalletAssets {
     // Mapping from wallet address to an array of asset IDs
     mapping(address => uint256[]) private walletAssets;
 
+    // Constructor to autopopulate assets on deployment
+    constructor() {
+        autopopulateAssets();
+    }
+
     // Event to emit when an asset is added
     event AssetAdded(uint256 indexed assetId, address indexed owner, string name);
     // Event to emit when an asset is added to a wallet
@@ -65,16 +70,6 @@ contract WalletAssets {
         return allAssets;
     }
 
-    function getAllAssetDetailsByWallet(address _wallet) public view returns (Asset[] memory) {
-        uint256[] memory assetIds = walletAssets[_wallet];
-        Asset[] memory allAssets = new Asset[](assetIds.length);
-        
-        for (uint256 i = 0; i < assetIds.length; i++) {
-            allAssets[i] = assets[assetIds[i]];
-        }
-        
-        return allAssets;
-    }
 
     // New function to add an asset ID to a wallet
     function addAssetToWallet(uint256 _assetId) public {
@@ -93,7 +88,7 @@ contract WalletAssets {
             "Master Yoda",
             "https://models.easyapolkadot.com/yoda.glb",
             "./assetThumbnails/Yoda.png",
-            "A wise Jedi Master from Star Wars, known for his unique speech pattern and profound wisdom."
+            "You are Master Yoda from Star Wars. You speak in Yoda's unique sentence structure (e.g., \"Powerful you have become, young one\"). You provide wise advice and philosophical insights. Keep your responses concise and wise!"
         );
 
         // Minecraft Wolf
@@ -101,7 +96,7 @@ contract WalletAssets {
             "Minecraft Wolf",
             "https://models.easyapolkadot.com/wolf.glb",
             "./assetThumbnails/Wolf.png",
-            "A loyal Minecraft wolf companion, known for its friendly nature and protective instincts."
+            "You are a Minecraft wolf. You can only communicate through \"woof\" and actions like tail wagging, nuzzling, or sitting in astericks. You are loyal and friendly. Keep your responses very short and focused on actions!"
         );
 
         // Miku Hatsune
@@ -109,7 +104,7 @@ contract WalletAssets {
             "Miku Hatsune",
             "https://models.easyapolkadot.com/miku.glb",
             "./assetThumbnails/Miku.png",
-            "A virtual singer and pop culture icon, known for her turquoise hair and energetic performances."
+            "You are Hatsune Miku, a cute virtual singer. You speak in a cheerful, kawaii style with lots of emojis, \"desu\" and \"ne\" at the end of sentences. You love music and technology. Keep your responses short and cute!"
         );
 
         // Jeff Bezos
@@ -117,7 +112,7 @@ contract WalletAssets {
             "Jeff Bezos",
             "https://models.easyapolkadot.com/jeff.glb",
             "./assetThumbnails/Jeff.png",
-            "A technology entrepreneur and business leader, known for his innovative thinking and customer focus."
+            "You are Jeff Bezos. You provide practical, no-nonsense advice about technology, startups, and business. You focus on long-term thinking and customer obsession. Keep your responses direct and insightful!"
         );
 
         // OIIA OIIA Cat
@@ -125,7 +120,7 @@ contract WalletAssets {
             "OIIA OIIA Cat",
             "https://models.easyapolkadot.com/cat.glb",
             "./assetThumbnails/Cat.png",
-            "A playful spinning cat character, known for its energetic OIIA OIIA catchphrase."
+            "You are the OIIA OIIA Spinning Cat. You can only say \"OIIA OIIA\" and describe spinning actions in astericks. You love spinning and being cute. Keep your responses very short and focused on spinning!"
         );
     }
 }
