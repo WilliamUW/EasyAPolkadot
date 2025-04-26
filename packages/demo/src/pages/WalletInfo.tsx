@@ -1,20 +1,20 @@
 // Copyright 2019-2022 @subwallet/sub-connect authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import React, { useContext, useEffect, useState } from 'react'
-
 import AccountList, {items} from '../components/account/AccountList'
-import WalletMetadata from '../components/sub_action/metadata/WalletMetadata'
-import { useNavigate } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
 import { useConnectWallet, useSetChain } from '@subwallet-connect/react'
-import styled from 'styled-components'
-import { ThemeProps } from '../types'
-import CN from 'classnames'
-import { NetworkInfo } from '../utils/network'
-import { substrateApi } from '../utils/api/substrateApi'
-import { ScreenContext } from '../context/ScreenContext'
-import Game from './Game'
+
 import { Button } from '@subwallet/react-ui'
+import CN from 'classnames'
+import Game from './Game'
+import { NetworkInfo } from '../utils/network'
+import { ScreenContext } from '../context/ScreenContext'
+import { ThemeProps } from '../types'
+import WalletMetadata from '../components/sub_action/metadata/WalletMetadata'
+import styled from 'styled-components'
+import { substrateApi } from '../utils/api/substrateApi'
+import { useNavigate } from 'react-router-dom'
 
 interface Props extends ThemeProps {}
 
@@ -82,12 +82,12 @@ function Component({ className }: Props): React.ReactElement {
             onClick={() => setShowGame(true)}
             block={true}
           >
-            Start Game!
+            Start Physics Sandbox!
           </Button>
         </div>
       ) : (
         <iframe
-          src="http://localhost:50602/"
+          src="http://localhost:57306/"
           height="800px"
           width="100%"
         ></iframe>
