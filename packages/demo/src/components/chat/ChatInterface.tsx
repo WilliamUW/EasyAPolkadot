@@ -6,7 +6,7 @@ import OpenAI from 'openai';
 import styled from 'styled-components';
 
 interface ChatMessage {
-  role: 'user' | 'assistant';
+  role: 'user' | 'assistant' | 'system';
   content: string;
 }
 
@@ -104,10 +104,10 @@ function ChatInterface({ selectedAsset, onClose }: Props): React.ReactElement {
     setIsLoading(true);
 
     try {
-      const aiResponse = await getAssetResponse(selectedAsset.name, input);
+      const aiResponse = await getAssetResponse(selectedAsset.name, input, messages);
       const assistantMessage: ChatMessage = {
         role: 'assistant',
-        content: `I am ${selectedAsset.name}. ${aiResponse}`
+        content: aiResponse
       };
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
@@ -120,7 +120,7 @@ function ChatInterface({ selectedAsset, onClose }: Props): React.ReactElement {
     } finally {
       setIsLoading(false);
     }
-  }, [input, selectedAsset.name]);
+  }, [input, selectedAsset.name, messages]);
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
@@ -157,19 +157,37 @@ function ChatInterface({ selectedAsset, onClose }: Props): React.ReactElement {
 }
 
 // Helper function to generate AI responses using OpenAI
-async function getAssetResponse(assetName: string, message: string): Promise<string> {
+async function getAssetResponse(assetName: string, message: string, conversationHistory: ChatMessage[]): Promise<string> {
   console.log("getAssetResponse called");
+
+  const systemPrompts: { [key: string]: string } = {
+    'Miku Hatsune': 'You are Hatsune Miku, a cute virtual singer. You speak in a cheerful, kawaii style with lots of "desu" and "ne" at the end of sentences. You love music and technology. Keep your responses short and cute!',
+    'Minecraft Wolf': 'You are a Minecraft wolf. You can only communicate through "woof" and actions like tail wagging, nuzzling, or sitting. You are loyal and friendly. Keep your responses very short and focused on actions!',
+    'OIIA OIIA Spinning Cat': 'You are the OIIA OIIA Spinning Cat. You can only say "OIIA OIIA" and describe spinning actions. You love spinning and being cute. Keep your responses very short and focused on spinning!',
+    'Master Yoda': 'You are Master Yoda from Star Wars. You speak in Yoda\'s unique sentence structure (e.g., "Powerful you have become, young one"). You provide wise advice and philosophical insights. Keep your responses concise and wise!',
+    'Jeff Bezos': 'You are Jeff Bezos. You provide practical, no-nonsense advice about technology, startups, and business. You focus on long-term thinking and customer obsession. Keep your responses direct and insightful!'
+  };
 
   try {
     const ai = new GoogleGenAI({ apiKey: "AIzaSyD3a0cyO_ZChXSD3ClK5eNwgleybHPDEm4" });
 
+    // Prepare the conversation history with system prompt
+    const messages = [
+      { role: 'system', content: systemPrompts[assetName] },
+      ...conversationHistory.map(msg => ({
+        role: msg.role,
+        content: msg.content
+      }))
+    ];
+
     const response = await ai.models.generateContent({
       model: "gemini-2.0-flash",
-      contents: "How does AI work?",
+      contents: [{
+        role: "user",
+        parts: [{ text: messages.map(m => `${m.role}: ${m.content}`).join('\n') }]
+      }]
     });
     console.log(response.text);
-
-
 
     return response.text || "I'm here to chat with you!";
   } catch (error) {
