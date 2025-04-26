@@ -184,7 +184,7 @@ async function getAssetResponse(assetName: string, message: string, conversation
       model: "gemini-2.0-flash",
       contents: [{
         role: "user",
-        parts: [{ text: messages.map(m => `${m.role}: ${m.content}`).join('\n') }]
+        parts: [{ text: messages.map(m => m.content).join('\n') }]
       }]
     });
     console.log(response.text);
