@@ -13,6 +13,7 @@ import {
 
 import type { Account } from '@subwallet-connect/core/dist/types'
 import CN from 'classnames'
+import ChatInterface from '../chat/ChatInterface'
 import { GeneralEmptyList } from '../empty'
 import { ScreenContext } from '../../context/ScreenContext'
 import { SubstrateProvider } from '@subwallet-connect/common'
@@ -35,6 +36,12 @@ type AccountMapType = {
   address: string
   name: string
   index: number
+}
+
+interface ItemType {
+  id: number;
+  name: string;
+  imageUrl: string;
 }
 
 export const items = [
@@ -99,9 +106,14 @@ function Component({
     true,
     false
   ])
+  const [selectedAsset, setSelectedAsset] = useState<{
+    id: number;
+    name: string;
+    imageUrl: string;
+  } | null>(null);
 
   const onSignClicked = useCallback(
-    (address: string, messageString: string, index?: number, item: object) => {
+    (address: string, messageString: string, item: ItemType, index: number) => {
       return async () => {
         if (wallet) {
           const { update, dismiss } = customNotification({
@@ -125,15 +137,13 @@ function Component({
               type: 'success',
               autoDismiss: 2000
             })
-            if (index !== undefined) {
-              console.log(`set index bought ${index}`)
-              setBought(prevBought => {
-                const newBought = [...prevBought]
-                newBought[index] = true
-                return newBought
-              })
-              alert(`🎉🥳 Congrats on buying ${item.name}!! 🎉🥳`)
-            }
+            console.log(`set index bought ${index}`)
+            setBought(prevBought => {
+              const newBought = [...prevBought]
+              newBought[index] = true
+              return newBought
+            })
+            alert(`🎉🥳 Congrats on buying ${item.name}!! 🎉🥳`)
           } catch (e) {
             update({
               eventCode: 'dbUpdateError',
@@ -160,6 +170,14 @@ function Component({
     },
     [activeModal, wallet]
   )
+
+  const onChatClicked = useCallback((item: { id: number; name: string; imageUrl: string }) => {
+    setSelectedAsset(item);
+  }, []);
+
+  const onCloseChat = useCallback(() => {
+    setSelectedAsset(null);
+  }, []);
 
   useEffect(() => {
     const accountMap = wallet?.accounts.reduce((acc, account, index) => {
@@ -190,24 +208,6 @@ function Component({
             <span className="__account-item__title">Address:</span>
             <span className="__account-item__content">{address}</span>
           </div>
-          {/* 
-          <div className={'__account-item-info'}>
-            <Button
-              className={CN('__wallet-btn', '__sub-wallet-sign-btn')}
-              onClick={onSignClicked(address, `Signing as ${address}`)}
-              block={true}
-            >
-              Sign Message
-            </Button>
-
-            <Button
-              className={CN('__wallet-btn', '__sub-wallet-transaction-btn')}
-              onClick={onTransactionClicked(address)}
-              block={true}
-            >
-              Send Transaction
-            </Button>
-          </div> */}
           <div
             style={{
               display: 'flex',
@@ -256,8 +256,8 @@ function Component({
                   onClick={onSignClicked(
                     address,
                     `Purchase ${item.name}`,
-                    index,
-                    item
+                    item,
+                    index
                   )}
                   block={true}
                   disabled={bought[index]}
@@ -269,15 +269,32 @@ function Component({
                     border: 'none',
                     borderRadius: '4px',
                     cursor: 'pointer',
-                    transition: 'background-color 0.3s'
+                    transition: 'background-color 0.3s',
+                    marginBottom: '10px'
                   }}
                 >
                   {bought[index] ? 'Already Bought' : 'Buy Item'}
                 </Button>
+                <Button
+                  className={CN('__wallet-btn', '__sub-wallet-chat-btn')}
+                  onClick={() => onChatClicked(item)}
+                  block={true}
+                  style={{
+                    width: '100%',
+                    padding: '10px',
+                    backgroundColor: '#28a745',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.3s'
+                  }}
+                >
+                  Chat with {item.name}
+                </Button>
               </div>
             ))}
           </div>
-
         </div>
       )
 
@@ -291,7 +308,7 @@ function Component({
         </>
       )
     },
-    [onSignClicked, onTransactionClicked, bought]
+    [onSignClicked, onTransactionClicked, bought, onChatClicked]
   )
 
   return (
@@ -311,6 +328,12 @@ function Component({
               senderAccount={accountTransaction}
               substrateProvider={substrateProvider}
               evmProvider={evmProvider}
+            />
+          )}
+          {selectedAsset && (
+            <ChatInterface
+              selectedAsset={selectedAsset}
+              onClose={onCloseChat}
             />
           )}
         </>
