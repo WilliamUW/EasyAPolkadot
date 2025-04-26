@@ -5,25 +5,26 @@
 // eslint-disable-next-line header/header
 import { Button, ModalContext, SwList, Web3Block } from '@subwallet/react-ui'
 import React, { useCallback, useContext, useEffect, useState } from 'react'
-import type { Account } from '@subwallet-connect/core/dist/types'
 import {
   useConnectWallet,
   useNotifications,
   useSetChain
 } from '@subwallet-connect/react'
-import { SubstrateProvider } from '@subwallet-connect/common'
-import { GeneralEmptyList } from '../empty'
-import { ThemeProps } from '../../types'
+
+import type { Account } from '@subwallet-connect/core/dist/types'
 import CN from 'classnames'
+import { GeneralEmptyList } from '../empty'
+import { ScreenContext } from '../../context/ScreenContext'
+import { SubstrateProvider } from '@subwallet-connect/common'
+import SwAvatar from '@subwallet/react-ui/es/sw-avatar'
+import { TRANSACTION_MODAL } from '../../constants/modal'
+import { ThemeProps } from '../../types'
+import TransactionModal from '../transaction/TransactionModal'
 import { evmApi } from '../../utils/api/evmApi'
+import styled from 'styled-components'
 import { substrateApi } from '../../utils/api/substrateApi'
 import { toShort } from '../../utils/style'
-import TransactionModal from '../transaction/TransactionModal'
-import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import { TRANSACTION_MODAL } from '../../constants/modal'
-import SwAvatar from '@subwallet/react-ui/es/sw-avatar'
-import { ScreenContext } from '../../context/ScreenContext'
 
 interface Props extends ThemeProps {
   substrateProvider?: substrateApi
@@ -39,64 +40,34 @@ type AccountMapType = {
 export const items = [
   {
     id: 1,
-    name: 'Cube',
+    name: 'Master Yoda',
     imageUrl:
-      'https://cdn.discordapp.com/attachments/1234940320408539178/1266774052882878464/Screenshot_2024-07-27_at_11.03.58_AM.png?ex=66a7b045&is=66a65ec5&hm=6bb65a0349379b535f3665caf04056db73ca85edc0bc78cf25708b030f957fc3&'
+      './assetThumbnails/Yoda.png'
   },
   {
     id: 2,
-    name: 'Sphere',
+    name: 'Minecraft Wolf',
     imageUrl:
-      'https://media.discordapp.net/attachments/1234940320408539178/1266774053872599051/Screenshot_2024-07-27_at_11.06.10_AM.png?ex=66a7b045&is=66a65ec5&hm=62030a7af940982b49b2cd72212950601ea06722649021c590f5eba650db1f80&=&format=webp&quality=lossless&width=1168&height=1038'
+    './assetThumbnails/Wolf.png'
   },
   {
     id: 3,
-    name: 'Cute Green Alien',
+    name: 'Miku Hatsune',
     imageUrl:
-      'https://media.discordapp.net/attachments/1234940320408539178/1266774094716731422/Screenshot_2024-07-27_at_11.06.34_AM.png?ex=66a7b04f&is=66a65ecf&hm=501b04604ab901da1e9deba2d9ff12eef17e735a706a8a68f466933349c6d882&=&format=webp&quality=lossless&width=1187&height=1038'
+    './assetThumbnails/Miku.png'
   },
   {
     id: 4,
-    name: 'Cute Red Alien',
+    name: 'Jeff Bezos',
     imageUrl:
-      'https://media.discordapp.net/attachments/1234940320408539178/1266774093890453615/Screenshot_2024-07-27_at_11.06.38_AM.png?ex=66a7b04f&is=66a65ecf&hm=9492b05fc458dc02409793402d88b8081ededa9944bf3bf7c7bfbc23fdfeca67&=&format=webp&quality=lossless&width=1152&height=1038'
+    './assetThumbnails/Jeff.png'
   },
   {
     id: 5,
-    name: 'Castle',
+    name: 'OIIA OIIA Cat',
     imageUrl:
-      'https://media.discordapp.net/attachments/1234940320408539178/1266774095823896688/Screenshot_2024-07-27_at_11.06.28_AM.png?ex=66a7b04f&is=66a65ecf&hm=cff2657b5218816b9d8c1186a8a6892ede19855f20bf8a3c50331e05816143fd&=&format=webp&quality=lossless&width=1076&height=1038'
+    './assetThumbnails/Cat.png'
   },
-  {
-    id: 6,
-    name: 'Cute White Llama',
-    imageUrl:
-      'https://media.discordapp.net/attachments/1234940320408539178/1266774092951064650/Screenshot_2024-07-27_at_11.06.46_AM.png?ex=66a65ecf&is=66a50d4f&hm=23a03df2ad81a73d247e96186884d893449c50d0b34a4ae5ac3dde04d1379ab7&=&format=webp&quality=lossless&width=920&height=1038'
-  },
-  {
-    id: 7,
-    name: 'Cone',
-    imageUrl:
-      'https://media.discordapp.net/attachments/1234940320408539178/1266774054774378506/Screenshot_2024-07-27_at_11.05.08_AM.png?ex=66a65ec6&is=66a50d46&hm=db373250f91855dd261f45ddede9a4afd999d26500c58750803c5a341e391a57&=&format=webp&quality=lossless&width=995&height=918'
-  },
-  {
-    id: 8,
-    name: 'Rhombicuboctahedron',
-    imageUrl:
-      'https://media.discordapp.net/attachments/1234940320408539178/1266774055545995384/Screenshot_2024-07-27_at_11.04.11_AM.png?ex=66a65ec6&is=66a50d46&hm=c4113c879b958d883d4a778909286367b1ffea80abf990f7f335e2cb457cc3bf&=&format=webp&quality=lossless&width=1110&height=1008'
-  },
-  {
-    id: 9,
-    name: 'Red Pyramid',
-    imageUrl:
-      'https://media.discordapp.net/attachments/1234940320408539178/1266774055143608440/Screenshot_2024-07-27_at_11.04.31_AM.png?ex=66a65ec6&is=66a50d46&hm=4c7f5b39b9f0f3061b0677d89c7ff42ecb5dd632511a4a76a5888aace8e8d8e1&=&format=webp&quality=lossless&width=1145&height=912'
-  },
-  {
-    id: 10,
-    name: 'Cylinder',
-    imageUrl:
-      'https://media.discordapp.net/attachments/1234940320408539178/1266774053327343667/Screenshot_2024-07-27_at_11.06.18_AM.png?ex=66a7b045&is=66a65ec5&hm=a290de9a53beeb89b91b3ef03324e18ca07013aa257439765df2c114bf916360&=&format=webp&quality=lossless&width=796&height=1038'
-  }
 ]
 
 const modalId = TRANSACTION_MODAL
