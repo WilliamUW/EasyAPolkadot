@@ -1,6 +1,8 @@
 import React, { useCallback, useState } from 'react';
 
 import { Button } from '@subwallet/react-ui';
+import { GoogleGenAI } from "@google/genai";
+import OpenAI from 'openai';
 import styled from 'styled-components';
 
 interface ChatMessage {
@@ -85,8 +87,11 @@ const CloseButton = styled.button`
 function ChatInterface({ selectedAsset, onClose }: Props): React.ReactElement {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSend = useCallback(() => {
+  console.log('OpenAI API Key:', process.env.REACT_APP_OPENAI_API_KEY ? 'Loaded' : 'Not loaded');
+
+  const handleSend = useCallback(async () => {
     if (!input.trim()) return;
 
     const userMessage: ChatMessage = {
@@ -96,15 +101,25 @@ function ChatInterface({ selectedAsset, onClose }: Props): React.ReactElement {
 
     setMessages(prev => [...prev, userMessage]);
     setInput('');
+    setIsLoading(true);
 
-    // Simulate AI response
-    setTimeout(() => {
-      const aiResponse: ChatMessage = {
+    try {
+      const aiResponse = await getAssetResponse(selectedAsset.name, input);
+      const assistantMessage: ChatMessage = {
         role: 'assistant',
-        content: `I am ${selectedAsset.name}. ${getAssetResponse(selectedAsset.name, input)}`
+        content: `I am ${selectedAsset.name}. ${aiResponse}`
       };
-      setMessages(prev => [...prev, aiResponse]);
-    }, 1000);
+      setMessages(prev => [...prev, assistantMessage]);
+    } catch (error) {
+      console.error('Error getting AI response:', error);
+      const errorMessage: ChatMessage = {
+        role: 'assistant',
+        content: "I'm sorry, I encountered an error while processing your message."
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
   }, [input, selectedAsset.name]);
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -141,17 +156,26 @@ function ChatInterface({ selectedAsset, onClose }: Props): React.ReactElement {
   );
 }
 
-// Helper function to generate AI responses based on the asset
-function getAssetResponse(assetName: string, message: string): string {
-  const responses: Record<string, string> = {
-    'Master Yoda': 'May the Force be with you! I sense great potential in your question.',
-    'Minecraft Wolf': 'Woof! I love exploring the blocky world and hunting for bones.',
-    'Miku Hatsune': 'Konichiwa! I love singing and dancing for my fans.',
-    'Jeff Bezos': "I'm focused on building the future of space exploration.",
-    'OIIA OIIA Cat': "Meow! I'm a playful cat who loves to explore and nap."
-  };
+// Helper function to generate AI responses using OpenAI
+async function getAssetResponse(assetName: string, message: string): Promise<string> {
+  console.log("getAssetResponse called");
 
-  return responses[assetName] || 'I am here to chat with you!';
+  try {
+    const ai = new GoogleGenAI({ apiKey: "AIzaSyD3a0cyO_ZChXSD3ClK5eNwgleybHPDEm4" });
+
+    const response = await ai.models.generateContent({
+      model: "gemini-2.0-flash",
+      contents: "How does AI work?",
+    });
+    console.log(response.text);
+
+
+
+    return response.text || "I'm here to chat with you!";
+  } catch (error) {
+    console.error('OpenAI API error:', error);
+    throw error;
+  }
 }
 
 export default ChatInterface; 
