@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <section className="min-h-screen bg-white text-black flex flex-col justify-center items-center gap-4 py-10">
       <WalletConnect onConnect={handleConnect} />
-      <ReadContract />
+      <ReadContract account={account} />
       <WriteContract account={account} />
     </section>
   );

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import ChatInterface from './ChatInterface';
 import { getContract } from '../utils/contract';
 
-const ReadContract = () => {
+const ReadContract = ({ account }) => {
   const [assets, setAssets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,6 +14,14 @@ const ReadContract = () => {
   const [showModel, setShowModel] = useState(false);
 
   useEffect(() => {
+    // Clear assets when wallet is disconnected
+    if (!account) {
+      setAssets([]);
+      setLoading(false);
+      setError(null);
+      return;
+    }
+
     // Function to read data from the blockchain
     const fetchData = async () => {
       try {
@@ -38,7 +46,16 @@ const ReadContract = () => {
 
     // Clean up interval on component unmount
     return () => clearInterval(interval);
-  }, []);
+  }, [account]);
+
+  // Close chat and model when wallet is disconnected
+  useEffect(() => {
+    if (!account) {
+      setShowChat(false);
+      setShowModel(false);
+      setSelectedAsset(null);
+    }
+  }, [account]);
 
   const handleChatClick = (asset) => {
     setSelectedAsset(asset);
@@ -68,7 +85,11 @@ const ReadContract = () => {
         <p className="text-xl text-gray-600">Next Generation of Interactive Digital Assets</p>
       </div>
       
-      {loading ? (
+      {!account ? (
+        <div className="text-center p-6 bg-gray-50 text-gray-600 rounded-xl max-w-md mx-auto shadow-sm">
+          Please connect your wallet to view assets
+        </div>
+      ) : loading ? (
         <div className="flex justify-center my-12">
           <div className="w-16 h-16 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
         </div>
