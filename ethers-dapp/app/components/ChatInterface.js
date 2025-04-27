@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { GoogleGenAI } from "@google/genai";
 import styled from 'styled-components';
@@ -88,6 +88,37 @@ const ChatInterface = ({ selectedAsset, onClose }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isWalletConnected, setIsWalletConnected] = useState(false);
+
+  useEffect(() => {
+    const checkWalletConnection = async () => {
+      if (window.ethereum) {
+        try {
+          const accounts = await window.ethereum.request({
+            method: 'eth_accounts',
+          });
+          setIsWalletConnected(accounts.length > 0);
+        } catch (err) {
+          console.error('Error checking wallet connection:', err);
+          setIsWalletConnected(false);
+        }
+      }
+    };
+
+    checkWalletConnection();
+
+    if (window.ethereum) {
+      window.ethereum.on('accountsChanged', (accounts) => {
+        setIsWalletConnected(accounts.length > 0);
+      });
+    }
+
+    return () => {
+      if (window.ethereum) {
+        window.ethereum.removeListener('accountsChanged', () => {});
+      }
+    };
+  }, []);
 
   // Helper function for text-to-speech
   function speakResponse(assetName, aiResponse) {
@@ -176,48 +207,50 @@ const ChatInterface = ({ selectedAsset, onClose }) => {
   };
 
   return (
-    <ChatContainer>
-      <ChatHeader>
-        <HeaderContent>
-          <Avatar src={selectedAsset.thumbnailUrl} alt={selectedAsset.name} />
-          <div>Chat with {selectedAsset.name}</div>
-        </HeaderContent>
-        <CloseButton onClick={onClose}>×</CloseButton>
-      </ChatHeader>
-      <ChatMessages>
-        {messages.map((message, index) => (
-          <Message key={index} isUser={message.role === 'user'}>
-            <MessageContent isUser={message.role === 'user'}>
-              {message.content}
-            </MessageContent>
-          </Message>
-        ))}
-        {isLoading && (
-          <Message isUser={false}>
-            <MessageContent isUser={false}>
-              <div className="flex items-center">
-                <div className="w-4 h-4 border-2 border-pink-500 border-t-transparent rounded-full animate-spin mr-2"></div>
-                Thinking...
-              </div>
-            </MessageContent>
-          </Message>
-        )}
-      </ChatMessages>
-      <InputContainer>
-        <Input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyPress={handleKeyPress}
-          placeholder="Type your message..."
-        />
-        <button
-          onClick={handleSend}
-          className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
-        >
-          Send
-        </button>
-      </InputContainer>
-    </ChatContainer>
+    isWalletConnected ? (
+      <ChatContainer>
+        <ChatHeader>
+          <HeaderContent>
+            <Avatar src={selectedAsset.thumbnailUrl} alt={selectedAsset.name} />
+            <div>Chat with {selectedAsset.name}</div>
+          </HeaderContent>
+          <CloseButton onClick={onClose}>×</CloseButton>
+        </ChatHeader>
+        <ChatMessages>
+          {messages.map((message, index) => (
+            <Message key={index} isUser={message.role === 'user'}>
+              <MessageContent isUser={message.role === 'user'}>
+                {message.content}
+              </MessageContent>
+            </Message>
+          ))}
+          {isLoading && (
+            <Message isUser={false}>
+              <MessageContent isUser={false}>
+                <div className="flex items-center">
+                  <div className="w-4 h-4 border-2 border-pink-500 border-t-transparent rounded-full animate-spin mr-2"></div>
+                  Thinking...
+                </div>
+              </MessageContent>
+            </Message>
+          )}
+        </ChatMessages>
+        <InputContainer>
+          <Input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Type your message..."
+          />
+          <button
+            onClick={handleSend}
+            className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+          >
+            Send
+          </button>
+        </InputContainer>
+      </ChatContainer>
+    ) : null
   );
 };
 

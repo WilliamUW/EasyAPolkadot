@@ -6,6 +6,7 @@ contract WalletAssets {
         string modelUrl;
         string thumbnailUrl;
         string description;
+        address owner;
     }
 
     mapping(uint256 => Asset) private assets;
@@ -15,7 +16,7 @@ contract WalletAssets {
 
 
     function addAsset(string memory _n, string memory _m, string memory _t, string memory _d) public {
-        assets[nextAssetId++] = Asset(_n, _m, _t, _d);
+        assets[nextAssetId++] = Asset(_n, _m, _t, _d, msg.sender);
     }
 
     function getAllAssetDetails() public view returns (Asset[] memory) {
