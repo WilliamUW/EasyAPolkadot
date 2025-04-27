@@ -2,6 +2,7 @@
 
 import React, { useCallback, useState } from 'react';
 
+import { GoogleGenAI } from "@google/genai";
 import styled from 'styled-components';
 
 const ChatContainer = styled.div`
@@ -88,6 +89,29 @@ const ChatInterface = ({ selectedAsset, onClose }) => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const getAssetResponse = async (message, conversationHistory) => {
+    const commonPrompt = "Keep responses less than 2 sentences, ideally one sentence like a conversation.";
+    const systemPrompt = `You are "${selectedAsset.name}". 
+   Prompt: "${selectedAsset.description}".`;
+
+    try {
+      const ai = new GoogleGenAI({ apiKey:process.env.NEXT_PUBLIC_GEMINI_API_KEY });
+
+      const response = await ai.models.generateContent({
+        model: "gemini-2.0-flash",
+        contents: [{
+          role: "user",
+          parts: [{ text: systemPrompt + commonPrompt + ". Conversation History: " + conversationHistory.map(m => m.content).join('\n') + ". User Query: " + message}]
+        }]
+      });
+      console.log(response.text);
+      return response.text;
+    } catch (error) {
+      console.error('Error generating response:', error);
+      throw error;
+    }
+  };
+
   const handleSend = useCallback(async () => {
     if (!input.trim()) return;
 
@@ -101,15 +125,12 @@ const ChatInterface = ({ selectedAsset, onClose }) => {
     setIsLoading(true);
 
     try {
-      // Simulate AI response - replace with actual AI integration
-      setTimeout(() => {
-        const aiResponse = {
-          role: 'assistant',
-          content: `This is a response about ${selectedAsset.name}. In a real implementation, this would be connected to an AI service.`
-        };
-        setMessages(prev => [...prev, aiResponse]);
-        setIsLoading(false);
-      }, 1000);
+      const aiResponse = await getAssetResponse(input, messages);
+      const assistantMessage = {
+        role: 'assistant',
+        content: aiResponse
+      };
+      setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
       console.error('Error getting AI response:', error);
       const errorMessage = {
@@ -117,9 +138,10 @@ const ChatInterface = ({ selectedAsset, onClose }) => {
         content: "I'm sorry, I encountered an error while processing your message."
       };
       setMessages(prev => [...prev, errorMessage]);
+    } finally {
       setIsLoading(false);
     }
-  }, [input, selectedAsset]);
+  }, [input, messages, selectedAsset]);
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
@@ -144,6 +166,16 @@ const ChatInterface = ({ selectedAsset, onClose }) => {
             </MessageContent>
           </Message>
         ))}
+        {isLoading && (
+          <Message isUser={false}>
+            <MessageContent isUser={false}>
+              <div className="flex items-center">
+                <div className="w-4 h-4 border-2 border-pink-500 border-t-transparent rounded-full animate-spin mr-2"></div>
+                Thinking...
+              </div>
+            </MessageContent>
+          </Message>
+        )}
       </ChatMessages>
       <InputContainer>
         <Input

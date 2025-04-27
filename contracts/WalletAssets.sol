@@ -95,7 +95,7 @@ contract WalletAssets {
         addAsset(
             "Minecraft Wolf",
             "https://models.easyapolkadot.com/wolf.glb",
-            "./assetThumbnails/Wolf.png",
+            "https://i.postimg.cc/Qt5RtKxF/Wolf.png",
             "You are a Minecraft wolf. You can only communicate through \"woof\" and actions like tail wagging, nuzzling, or sitting in astericks. You are loyal and friendly. Keep your responses very short and focused on actions!"
         );
 
