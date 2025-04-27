@@ -30,12 +30,13 @@ https://youtu.be/k0PB1LK7_Xc
 
 https://www.youtube.com/watch?v=3NPjDRycH_g
 
-## Smart Contract
-For tracking asset urls for each wallet
+## Smart Contract Code
+
+The PolkaVerse needs a smart contract on Polkadot to securely create, manage, and verify ownership of user-generated digital assets in a decentralized, trustless way. This ensures users can own, prove, and interact with their assets across Polkadot’s ecosystem of chains, wallets, and apps.
 
 https://github.com/WilliamUW/EasyAPolkadot/blob/main/contracts/WalletAssets.sol
 
-Smart Contract Deployed on Polkadot Westend AssetHub TestNet:
+## Smart Contract Deployed on Polkadot Westend AssetHub TestNet Link:
 
 https://assethub-westend.subscan.io/account/0x15e9006f2f505ec32aed9158dbd89116fdaaa6ae
 
