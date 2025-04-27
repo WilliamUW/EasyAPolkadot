@@ -60,35 +60,40 @@ const ReadContract = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold text-center mb-8 text-pink-500">Asset Gallery</h2>
+    <div className="container mx-auto px-4 py-12">
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-pink-500 to-purple-600 text-transparent bg-clip-text">
+          PolkaVerse
+        </h2>
+        <p className="text-xl text-gray-600">Next Generation of Interactive Digital Assets</p>
+      </div>
       
       {loading ? (
-        <div className="flex justify-center my-8">
-          <div className="w-12 h-12 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="flex justify-center my-12">
+          <div className="w-16 h-16 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
         </div>
       ) : error ? (
-        <div className="text-center p-4 bg-red-100 text-red-500 rounded-lg max-w-md mx-auto">
+        <div className="text-center p-6 bg-red-50 text-red-500 rounded-xl max-w-md mx-auto shadow-sm">
           {error}
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {assets.length === 0 ? (
-            <div className="col-span-full text-center py-8">
+            <div className="col-span-full text-center py-12">
               <p className="text-gray-500 text-lg">No assets found</p>
             </div>
           ) : (
             assets.map((asset, index) => (
               <div
                 key={index}
-                className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+                className="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-xl"
               >
                 {/* Thumbnail Image */}
                 <div className="relative aspect-square overflow-hidden">
                   <img
                     src={asset.thumbnailUrl || 'https://via.placeholder.com/300x200?text=No+Thumbnail'}
                     alt={asset.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                     onError={(e) => {
                       e.target.src = 'https://via.placeholder.com/300x200?text=No+Thumbnail';
                     }}
@@ -104,7 +109,7 @@ const ReadContract = () => {
                   <div className="mb-4">
                     <button
                       onClick={handleViewModel}
-                      className="text-pink-500 hover:text-pink-600 flex items-center"
+                      className="text-pink-500 hover:text-pink-600 flex items-center transition-colors duration-200"
                     >
                       <svg
                         className="w-5 h-5 mr-2"
@@ -124,15 +129,15 @@ const ReadContract = () => {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex space-x-2">
+                  <div className="flex space-x-3">
                     <button
                       onClick={() => handleChatClick(asset)}
-                      className="flex-1 bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+                      className="flex-1 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 hover:shadow-lg"
                     >
                       Chat with Asset
                     </button>
                     <button
-                      className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg transition-colors"
+                      className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2.5 px-4 rounded-lg transition-all duration-300"
                     >
                       Share
                     </button>
@@ -153,13 +158,13 @@ const ReadContract = () => {
 
       {/* 3D Model Modal */}
       {showModel && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg w-full max-w-6xl h-[80vh] mx-4">
-            <div className="flex justify-between items-center p-4 border-b">
-              <h3 className="text-lg font-semibold">3D Model Viewer</h3>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl w-full max-w-6xl h-[80vh] mx-4 shadow-2xl">
+            <div className="flex justify-between items-center p-6 border-b">
+              <h3 className="text-xl font-semibold text-gray-800">3D Model Viewer</h3>
               <button
                 onClick={handleCloseModel}
-                className="text-gray-500 hover:text-gray-700"
+                className="text-gray-500 hover:text-gray-700 transition-colors duration-200"
               >
                 <svg
                   className="w-6 h-6"
@@ -176,10 +181,10 @@ const ReadContract = () => {
                 </svg>
               </button>
             </div>
-            <div className="h-[calc(80vh-4rem)]">
+            <div className="h-[calc(80vh-5rem)]">
               <iframe
                 src="http://localhost:51668/"
-                className="w-full h-full"
+                className="w-full h-full rounded-b-2xl"
                 frameBorder="0"
               />
             </div>
