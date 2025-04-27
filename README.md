@@ -49,8 +49,16 @@ Dapp UI:
 Chatting with Asset:
 <img width="1280" alt="Screenshot 2025-04-26 at 10 49 48 PM" src="https://github.com/user-attachments/assets/44931ad4-1f9b-4b0f-b06c-407c02134784" />
 
+
+https://github.com/user-attachments/assets/80201410-19ee-4c56-979a-2bbea0f05354
+
+
 Spawning Asset in Unity WebGL Physics Playground:
 <img width="1203" alt="Screenshot 2025-04-26 at 10 51 22 PM" src="https://github.com/user-attachments/assets/567b2e74-b1d2-47c7-86f3-a06c3b05da60" />
+
+
+https://github.com/user-attachments/assets/97be9144-f887-4bc1-90d5-55b09907d8a7
+
 
 
 ## Old Screenshots
