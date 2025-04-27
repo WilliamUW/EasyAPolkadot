@@ -22,24 +22,64 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-## Demo + Explanation
+# Existing Project Details
 
-https://youtu.be/k0PB1LK7_Xc
+We are also submitting to the existing projects track. We started this project at the EasyA Harvard Polkadot hackathon last year and previously, you could only play with your assets in a physical sandbox, but now you can talk with your favorite assets!
 
-## Gameplay
+# Submission requirements ✅-List
 
-https://www.youtube.com/watch?v=3NPjDRycH_g
+1. [X] Be built with smart contracts on Polkadot Asset Hub
 
-## Smart Contract Code
+Code:
+https://github.com/WilliamUW/EasyAPolkadot/blob/main/contracts/Contract.sol
 
-The PolkaVerse needs a smart contract on Polkadot to securely create, manage, and verify ownership of user-generated digital assets in a decentralized, trustless way. This ensures users can own, prove, and interact with their assets across Polkadot’s ecosystem of chains, wallets, and apps.
-
-https://github.com/WilliamUW/EasyAPolkadot/blob/main/contracts/WalletAssets.sol
-
-## Smart Contract Deployed on Polkadot Westend AssetHub TestNet Link:
-
+Smart Contract Deployed on Polkadot Westend AssetHub TestNet Link:
 https://assethub-westend.subscan.io/account/0x15e9006f2f505ec32aed9158dbd89116fdaaa6ae
 <img width="928" alt="Screenshot 2025-04-26 at 10 52 23 PM" src="https://github.com/user-attachments/assets/ea8a4ef6-d741-4082-bc6e-0a6df8160846" />
+
+
+2. [X] Be open source (and remain available as open source)
+
+Yes, Github Repo is public and will remain public!
+
+3. [X] Include a short summary (<150 chars)
+
+The Polkaverse allows users to create and own digital assets that come to life with a real-time physics sandbox and AI chat integration to solve the problem of static, unengaging digital assets powered by Polkadot Asset Hub.
+
+4. [X] Include a full description (the problems it solves, how Polkadot was used to achieve it)
+
+PolkaVerse is a decentralized application that bridges the gap between digital ownership and real-world interaction, powered by Polkadot. Our smart contract on AssetHub enables users to create, own, and verify digital assets, which can then be spawned into a dynamic Unity WebGL physics sandbox and engaged with through AI-powered conversations. By leveraging Polkadot’s scalable asset management and cross-chain interoperability, Polkaverse enhances the tangibility of digital assets, offering users a new, immersive way to experience and interact with their virtual possessions across the broader Polkadot ecosystem.
+
+5. [X] Include a technical description (what SDKs were used, and what features of Polkadot made this uniquely possible)
+
+Polkaverse utilizes Metamask for secure and decentralized user authentication, allowing users to connect to the Polkadot AssetHub network. Ethers.js facilitates real-time fetching of digital asset data from our smart contract deployed on the Westend AssetHub Testnet. Google’s Gemini 2.0 Flash model powers personalized AI interactions with each user’s assets, while Unity WebGL provides an immersive physics sandbox for spawning and interacting with them.
+
+Polkadot's unique AssetHub parachain enables low-cost, highly scalable, and standardized asset creation and management across the entire Polkadot ecosystem. Additionally, Polkadot's cross-chain interoperability ensures that assets created on AssetHub can seamlessly integrate with future dApps, wallets, and parachains, extending the reach and utility of user-generated assets beyond just Polkaverse.
+
+6. [X] Include a link to the Canva slides used in the presentation (including a slide on your team, problem, solution etc). You must use Canva for your presentation (yes, this is a requirement).
+
+https://www.canva.com/design/DAGMMwZQYqg/SmJTmqBl4GqeMweNXy2ztQ/view?utm_content=DAGMMwZQYqg&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hb633e28ba7
+
+7. [X] (For coding submissions) Have a custom (not boilerplate) smart contract on Polkadot Asset Hub (and committed to your GitHub repo). All of this must be fully-functioning, as evidenced in a demo video on your README (see point 8 below).
+
+Yes please see section 8.3
+
+8. [X] (For coding submissions) Include a clear README on your GitHub repo explaining how your project works. This README must include:
+
+    1. [X] A demo video - See below (https://youtu.be/rTmR7d7fA08)
+
+    2. [X] Screenshots of your UI - See New Screenshots below
+
+    3. [X] Description of how your smart contract works 
+
+    We have a smart contract deployed on Polkadot Westend Asset Hub to securely create, manage, and verify ownership of user-generated digital assets in a decentralized, trustless way. Once created, users can both chat with the asset using a chatbot initialized from the asset’s description, and spawn them into our 3D sandbox with its respective 3D Model URL. Our contract ensures users can own, prove, and interact with their assets across Polkadot’s entire ecosystem of chains, wallets, and apps in a highly scalable and low-cost manner. 
+
+    4. [X] A video with audio (e.g. a Loom video [like this](https://youtu.be/ZLKR4zE1o6U?si=6na7139wlVNkmJRa)) explaining how your project works, how the GitHub repo is structured, a demo of everything working etc. This is vital, so that the judges can review your project properly. Make sure you explain clearly how you satisfied point 7 above. This is a great example of a winning Polkadot project’s README: https://github.com/jjjutla/melodot. Bonus points for if your video is well-edited! - 
+
+    See below (https://youtu.be/CQ0DuR_dadQ)
+
+    5. [X] Block explorer link for deployed smart contract on Asset Hub - Deployed (via REMIX): https://blockscout-asset-hub.parity-chains-scw.parity.io/tx/0xd87112b6846ec6b0e27139df22b2e46a47a6b841dab9310f79f8b29b5c283d03
+
 
 ## New Screenshots
 
@@ -70,8 +110,6 @@ Spawning Asset in Unity WebGL Physics Playground:
 
 
 https://github.com/user-attachments/assets/97be9144-f887-4bc1-90d5-55b09907d8a7
-
-
 
 ## Old Screenshots
 
