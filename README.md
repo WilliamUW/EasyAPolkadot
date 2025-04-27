@@ -39,6 +39,19 @@ https://github.com/WilliamUW/EasyAPolkadot/blob/main/contracts/WalletAssets.sol
 ## Smart Contract Deployed on Polkadot Westend AssetHub TestNet Link:
 
 https://assethub-westend.subscan.io/account/0x15e9006f2f505ec32aed9158dbd89116fdaaa6ae
+<img width="928" alt="Screenshot 2025-04-26 at 10 52 23 PM" src="https://github.com/user-attachments/assets/ea8a4ef6-d741-4082-bc6e-0a6df8160846" />
+
+## New Screenshots
+
+Dapp UI:
+<img width="559" alt="Screenshot 2025-04-26 at 10 49 08 PM" src="https://github.com/user-attachments/assets/3898c85b-bad3-4a10-8342-1789b83cec8e" />
+
+Chatting with Asset:
+<img width="1280" alt="Screenshot 2025-04-26 at 10 49 48 PM" src="https://github.com/user-attachments/assets/44931ad4-1f9b-4b0f-b06c-407c02134784" />
+
+Spawning Asset in Unity WebGL Physics Playground:
+<img width="1203" alt="Screenshot 2025-04-26 at 10 51 22 PM" src="https://github.com/user-attachments/assets/567b2e74-b1d2-47c7-86f3-a06c3b05da60" />
+
 
 ## Old Screenshots
 
