@@ -76,21 +76,23 @@ Yes please see section 8.3
 https://github.com/user-attachments/assets/21fbf259-1670-4977-9e0a-53a0886dc9c1
 
 
-    2. [X] Screenshots of your UI - See New Screenshots below
+   ` 2. [X] Screenshots of your UI - See New Screenshots below
 
-    3. [X] Description of how your smart contract works 
+`    3. [X] Description of how your smart contract works 
 
-    We have a smart contract deployed on Polkadot Westend Asset Hub to securely create, manage, and verify ownership of user-generated digital assets in a decentralized, trustless way. Once created, users can both chat with the asset using a chatbot initialized from the asset’s description, and spawn them into our 3D sandbox with its respective 3D Model URL. Our contract ensures users can own, prove, and interact with their assets across Polkadot’s entire ecosystem of chains, wallets, and apps in a highly scalable and low-cost manner. 
+ `   We have a smart contract deployed on Polkadot Westend Asset Hub to securely create, manage, and verify ownership of user-generated digital assets in a decentralized, trustless way. Once created, users can both chat with the asset using a chatbot initialized from the asset’s description, and spawn them into our 3D sandbox with its respective 3D Model URL. Our contract ensures users can own, prove, and interact with their assets across Polkadot’s entire ecosystem of chains, wallets, and apps in a highly scalable and low-cost manner. 
 
-    4. [X] A video with audio (e.g. a Loom video [like this](https://youtu.be/ZLKR4zE1o6U?si=6na7139wlVNkmJRa)) explaining how your project works, how the GitHub repo is structured, a demo of everything working etc. This is vital, so that the judges can review your project properly. Make sure you explain clearly how you satisfied point 7 above. This is a great example of a winning Polkadot project’s README: https://github.com/jjjutla/melodot. Bonus points for if your video is well-edited! - 
+`    4. [X] A video with audio (e.g. a Loom video [like this](https://youtu.be/ZLKR4zE1o6U?si=6na7139wlVNkmJRa)) explaining how your project works, how the GitHub repo is structured, a demo of everything working etc. This is vital, so that the judges can review your project properly. Make sure you explain clearly how you satisfied point 7 above. This is a great example of a winning Polkadot project’s README: https://github.com/jjjutla/melodot. Bonus points for if your video is well-edited! - 
 
-    See below (https://youtu.be/CQ0DuR_dadQ)
+  `  See below (https://youtu.be/CQ0DuR_dadQ) 
+
+    
 
 https://github.com/user-attachments/assets/d3a82d26-7962-4b0b-b04b-10f4cbf59625
 
 
 
-    5. [X] Block explorer link for deployed smart contract on Asset Hub - Deployed (via REMIX): https://blockscout-asset-hub.parity-chains-scw.parity.io/tx/0xd87112b6846ec6b0e27139df22b2e46a47a6b841dab9310f79f8b29b5c283d03
+ `   5. [X] Block explorer link for deployed smart contract on Asset Hub - Deployed (via REMIX): https://blockscout-asset-hub.parity-chains-scw.parity.io/tx/0xd87112b6846ec6b0e27139df22b2e46a47a6b841dab9310f79f8b29b5c283d03
 
 
 ## New Screenshots
