@@ -80,7 +80,7 @@ const WriteContract = ({ account }) => {
 
   return (
     <div className="border border-pink-500 rounded-lg p-4 shadow-md bg-white text-pink-500 max-w-2xl mx-auto space-y-4">
-      <h2 className="text-lg font-bold">Add New Asset</h2>
+      <h2 className="text-lg font-bold">Create a New AI-Augmented Digital Asset on Polkadot!</h2>
       {status.message && (
         <div
           className={`p-2 rounded-md break-words h-fit text-sm ${
