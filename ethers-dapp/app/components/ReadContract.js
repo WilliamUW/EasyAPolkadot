@@ -204,7 +204,7 @@ const ReadContract = ({ account }) => {
             </div>
             <div className="h-[calc(80vh-5rem)]">
               <iframe
-                src="http://localhost:51668/"
+                src={process.env.NEXT_PUBLIC_MODEL_VIEWER_URL}
                 className="w-full h-full rounded-b-2xl"
                 frameBorder="0"
               />
