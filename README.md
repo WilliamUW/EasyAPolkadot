@@ -3,11 +3,24 @@
 Unity WebGL Repo: https://github.com/WilliamUW/EasyAPolkadotUnity
 
 ## Instructions
-- Install the dependencies: `yarn install`
-- Run build all packages in dev mode: `yarn build`
-- Direct to package\demo: `cd ./packages/demo`
-- Running start to view demo : `yarn start`
-- To view the demo app in the browser after running the above steps navigate to [http://localhost:8080](http://localhost:8080)
+
+### 0. Go to `ethers-dapp` folder.
+
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Run the development server
+
+```bash
+npm run dev
+```
+
+### 3. Open the application
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
 ## Demo + Explanation
 
@@ -26,7 +39,7 @@ Smart Contract Deployed on Polkadot Westend AssetHub TestNet:
 
 https://assethub-westend.subscan.io/account/0x15e9006f2f505ec32aed9158dbd89116fdaaa6ae
 
-## Screenshots
+## Old Screenshots
 
 <img width="1280" alt="Screenshot 2024-07-28 at 12 17 56 AM" src="https://github.com/user-attachments/assets/f1a69b70-56ac-4a13-8d82-66f9568bc5f8">
 <img width="1280" alt="Screenshot 2024-07-28 at 12 17 52 AM" src="https://github.com/user-attachments/assets/8b7a2bb4-f824-4c95-8a83-970d0afbd28c">
