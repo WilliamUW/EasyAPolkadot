@@ -1,11 +1,14 @@
 'use client';
 
-import { useState } from 'react';
-import { getSignedContract } from '../utils/contract';
 import { ethers } from 'ethers';
+import { getSignedContract } from '../utils/contract';
+import { useState } from 'react';
 
 const WriteContract = ({ account }) => {
-  const [newNumber, setNewNumber] = useState('');
+  const [assetName, setAssetName] = useState('');
+  const [modelUrl, setModelUrl] = useState('');
+  const [thumbnailUrl, setThumbnailUrl] = useState('');
+  const [description, setDescription] = useState('');
   const [status, setStatus] = useState({ type: null, message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -18,8 +21,8 @@ const WriteContract = ({ account }) => {
       return;
     }
 
-    if (!newNumber || isNaN(Number(newNumber))) {
-      setStatus({ type: 'error', message: 'Please enter a valid number' });
+    if (!assetName || !modelUrl || !thumbnailUrl || !description) {
+      setStatus({ type: 'error', message: 'Please fill in all fields' });
       return;
     }
 
@@ -38,8 +41,8 @@ const WriteContract = ({ account }) => {
         message: 'Please confirm the transaction in your wallet...',
       });
 
-      // Call the contract's setNumber function
-      const tx = await contract.setNumber(newNumber);
+      // Call the contract's addAsset function
+      const tx = await contract.addAsset(assetName, modelUrl, thumbnailUrl, description);
 
       // Wait for transaction to be mined
       setStatus({
@@ -52,9 +55,14 @@ const WriteContract = ({ account }) => {
         type: 'success',
         message: `Transaction confirmed! Transaction hash: ${receipt.hash}`,
       });
-      setNewNumber('');
+      
+      // Clear form
+      setAssetName('');
+      setModelUrl('');
+      setThumbnailUrl('');
+      setDescription('');
     } catch (err) {
-      console.error('Error updating number:', err);
+      console.error('Error adding asset:', err);
 
       // Error code 4001 is MetaMask's code for user rejection
       if (err.code === 4001) {
@@ -71,8 +79,8 @@ const WriteContract = ({ account }) => {
   };
 
   return (
-    <div className="border border-pink-500 rounded-lg p-4 shadow-md bg-white text-pink-500 max-w-sm mx-auto space-y-4">
-      <h2 className="text-lg font-bold">Update Stored Number</h2>
+    <div className="border border-pink-500 rounded-lg p-4 shadow-md bg-white text-pink-500 max-w-2xl mx-auto space-y-4">
+      <h2 className="text-lg font-bold">Add New Asset</h2>
       {status.message && (
         <div
           className={`p-2 rounded-md break-words h-fit text-sm ${
@@ -86,24 +94,47 @@ const WriteContract = ({ account }) => {
       )}
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
-          type="number"
-          placeholder="New Number"
-          value={newNumber}
-          onChange={(e) => setNewNumber(e.target.value)}
+          type="text"
+          placeholder="Asset Name"
+          value={assetName}
+          onChange={(e) => setAssetName(e.target.value)}
           disabled={isSubmitting || !account}
           className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400"
+        />
+        <input
+          type="text"
+          placeholder="Model URL"
+          value={modelUrl}
+          onChange={(e) => setModelUrl(e.target.value)}
+          disabled={isSubmitting || !account}
+          className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400"
+        />
+        <input
+          type="text"
+          placeholder="Thumbnail URL"
+          value={thumbnailUrl}
+          onChange={(e) => setThumbnailUrl(e.target.value)}
+          disabled={isSubmitting || !account}
+          className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400"
+        />
+        <textarea
+          placeholder="Asset Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          disabled={isSubmitting || !account}
+          className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-400 h-24"
         />
         <button
           type="submit"
           disabled={isSubmitting || !account}
           className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-4 rounded-lg transition disabled:bg-gray-300"
         >
-          {isSubmitting ? 'Updating...' : 'Update'}
+          {isSubmitting ? 'Adding Asset...' : 'Add Asset'}
         </button>
       </form>
       {!account && (
         <p className="text-sm text-gray-500">
-          Connect your wallet to update the stored number.
+          Connect your wallet to add a new asset.
         </p>
       )}
     </div>

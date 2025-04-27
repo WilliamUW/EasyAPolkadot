@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import { getContract } from '../utils/contract';
 
 const ReadContract = () => {
-  const [storedNumber, setStoredNumber] = useState(null);
+  const [assets, setAssets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -14,12 +15,12 @@ const ReadContract = () => {
       try {
         setLoading(true);
         const contract = getContract();
-        // Call the smart contract's storedNumber function
-        const number = await contract.storedNumber();
-        setStoredNumber(number.toString());
+        // Call the smart contract's getAllAssetDetails function
+        const assetDetails = await contract.getAllAssetDetails();
+        setAssets(assetDetails);
         setError(null);
       } catch (err) {
-        console.error('Error fetching stored number:', err);
+        console.error('Error fetching asset details:', err);
         setError('Failed to fetch data from the contract');
       } finally {
         setLoading(false);
@@ -36,8 +37,8 @@ const ReadContract = () => {
   }, []);
 
   return (
-    <div className="border border-pink-500 rounded-lg p-4 shadow-md bg-white text-pink-500 max-w-sm mx-auto">
-      <h2 className="text-lg font-bold text-center mb-4">Contract Data</h2>
+    <div className="border border-pink-500 rounded-lg p-4 shadow-md bg-white text-pink-500 max-w-2xl mx-auto">
+      <h2 className="text-lg font-bold text-center mb-4">Asset Details</h2>
       {loading ? (
         <div className="flex justify-center my-4">
           <div className="w-6 h-6 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
@@ -45,10 +46,19 @@ const ReadContract = () => {
       ) : error ? (
         <p className="text-red-500 text-center">{error}</p>
       ) : (
-        <div className="text-center">
-          <p className="text-sm font-mono bg-pink-100 px-2 py-1 rounded-md text-pink-700">
-            <strong>Stored Number:</strong> {storedNumber}
-          </p>
+        <div className="space-y-4">
+          {assets.length === 0 ? (
+            <p className="text-center">No assets found</p>
+          ) : (
+            assets.map((asset, index) => (
+              <div key={index} className="border border-pink-200 rounded p-4">
+                <p className="font-bold">{asset.name}</p>
+                <p className="text-sm text-pink-600">Model URL: {asset.modelUrl}</p>
+                <p className="text-sm text-pink-600">Thumbnail URL: {asset.thumbnailUrl}</p>
+                <p className="text-sm text-pink-600">Description: {asset.description}</p>
+              </div>
+            ))
+          )}
         </div>
       )}
     </div>
