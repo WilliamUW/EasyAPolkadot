@@ -22,9 +22,9 @@ For tracking asset urls for each wallet
 
 https://github.com/WilliamUW/EasyAPolkadot/blob/main/contracts/WalletAssets.sol
 
-Deployed on Moonbeam testnet:
+Smart Contract Deployed on Polkadot Westend AssetHub TestNet:
 
-https://moonbase.moonscan.io/address/0x632e69488e25f1bec16a11cf1aa7b2261f2b94ef#code
+https://assethub-westend.subscan.io/account/0x15e9006f2f505ec32aed9158dbd89116fdaaa6ae
 
 ## Screenshots
 
