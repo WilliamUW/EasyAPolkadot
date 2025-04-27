@@ -89,6 +89,29 @@ const ChatInterface = ({ selectedAsset, onClose }) => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  // Helper function for text-to-speech
+  function speakResponse(assetName, aiResponse) {
+    const speech = new SpeechSynthesisUtterance(aiResponse);
+    const voices = window.speechSynthesis.getVoices();
+    
+    switch(assetName) {
+      case 'Miku Hatsune':
+        speech.voice = voices.find(v => v.lang.includes('ja')) || voices[0];
+        speech.rate = 1.2;
+        break;
+      case 'Master Yoda':
+        speech.rate = 0.8;
+        break;
+      case 'Jeff Bezos':
+        speech.rate = 1.1;
+        break;
+      default:
+        speech.rate = 1.0;
+    }
+    
+    window.speechSynthesis.speak(speech);
+  }
+
   const getAssetResponse = async (message, conversationHistory) => {
     const commonPrompt = "Keep responses less than 2 sentences, ideally one sentence like a conversation.";
     const systemPrompt = `You are "${selectedAsset.name}". 
@@ -131,6 +154,9 @@ const ChatInterface = ({ selectedAsset, onClose }) => {
         content: aiResponse
       };
       setMessages(prev => [...prev, assistantMessage]);
+      
+      // Use the speakResponse function
+      speakResponse(selectedAsset.name, aiResponse);
     } catch (error) {
       console.error('Error getting AI response:', error);
       const errorMessage = {
