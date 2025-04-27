@@ -2,6 +2,10 @@
 
 Unity WebGL Repo: https://github.com/WilliamUW/EasyAPolkadotUnity
 
+Presentation Video: https://youtu.be/rTmR7d7fA08
+
+Detailed Technical Explanation Video: https://youtu.be/CQ0DuR_dadQ
+
 ## Instructions
 
 ### 0. Go to `ethers-dapp` folder.
@@ -68,6 +72,10 @@ Yes please see section 8.3
 
     1. [X] A demo video - See below (https://youtu.be/rTmR7d7fA08)
 
+
+https://github.com/user-attachments/assets/21fbf259-1670-4977-9e0a-53a0886dc9c1
+
+
     2. [X] Screenshots of your UI - See New Screenshots below
 
     3. [X] Description of how your smart contract works 
@@ -77,6 +85,10 @@ Yes please see section 8.3
     4. [X] A video with audio (e.g. a Loom video [like this](https://youtu.be/ZLKR4zE1o6U?si=6na7139wlVNkmJRa)) explaining how your project works, how the GitHub repo is structured, a demo of everything working etc. This is vital, so that the judges can review your project properly. Make sure you explain clearly how you satisfied point 7 above. This is a great example of a winning Polkadot project’s README: https://github.com/jjjutla/melodot. Bonus points for if your video is well-edited! - 
 
     See below (https://youtu.be/CQ0DuR_dadQ)
+
+https://github.com/user-attachments/assets/d3a82d26-7962-4b0b-b04b-10f4cbf59625
+
+
 
     5. [X] Block explorer link for deployed smart contract on Asset Hub - Deployed (via REMIX): https://blockscout-asset-hub.parity-chains-scw.parity.io/tx/0xd87112b6846ec6b0e27139df22b2e46a47a6b841dab9310f79f8b29b5c283d03
 
