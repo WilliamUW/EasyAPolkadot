@@ -2,12 +2,15 @@
 
 import React, { useEffect, useState } from 'react';
 
+import ChatInterface from './ChatInterface';
 import { getContract } from '../utils/contract';
 
 const ReadContract = () => {
   const [assets, setAssets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedAsset, setSelectedAsset] = useState(null);
+  const [showChat, setShowChat] = useState(false);
 
   useEffect(() => {
     // Function to read data from the blockchain
@@ -35,6 +38,16 @@ const ReadContract = () => {
     // Clean up interval on component unmount
     return () => clearInterval(interval);
   }, []);
+
+  const handleChatClick = (asset) => {
+    setSelectedAsset(asset);
+    setShowChat(true);
+  };
+
+  const handleCloseChat = () => {
+    setShowChat(false);
+    setSelectedAsset(null);
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -105,9 +118,10 @@ const ReadContract = () => {
                   {/* Action Buttons */}
                   <div className="flex space-x-2">
                     <button
+                      onClick={() => handleChatClick(asset)}
                       className="flex-1 bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
                     >
-                      Add to Wallet
+                      Chat with Asset
                     </button>
                     <button
                       className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-lg transition-colors"
@@ -120,6 +134,13 @@ const ReadContract = () => {
             ))
           )}
         </div>
+      )}
+
+      {showChat && selectedAsset && (
+        <ChatInterface
+          selectedAsset={selectedAsset}
+          onClose={handleCloseChat}
+        />
       )}
     </div>
   );
