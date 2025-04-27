@@ -46,6 +46,18 @@ https://assethub-westend.subscan.io/account/0x15e9006f2f505ec32aed9158dbd89116fd
 Dapp UI:
 <img width="559" alt="Screenshot 2025-04-26 at 10 49 08 PM" src="https://github.com/user-attachments/assets/3898c85b-bad3-4a10-8342-1789b83cec8e" />
 
+Add "Master Yoda" Asset:
+
+
+https://github.com/user-attachments/assets/aca4f9c8-3c9b-4d3c-8353-c9a071876998
+
+
+
+https://github.com/user-attachments/assets/d68c7356-3d62-4e8c-88e5-0596d4d64ff5
+
+<img width="923" alt="Screenshot 2025-04-26 at 11 32 54 PM" src="https://github.com/user-attachments/assets/8cc0596f-703d-42f4-9452-56c7480eac75" />
+https://assethub-westend.subscan.io/tx/0xac4aa031e0f22d7f8901c8b82c8a99349880fa98dbcf47ef93926b08612052b9
+
 Chatting with Asset:
 <img width="1280" alt="Screenshot 2025-04-26 at 10 49 48 PM" src="https://github.com/user-attachments/assets/44931ad4-1f9b-4b0f-b06c-407c02134784" />
 
