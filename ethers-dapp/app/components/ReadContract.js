@@ -11,6 +11,7 @@ const ReadContract = () => {
   const [error, setError] = useState(null);
   const [selectedAsset, setSelectedAsset] = useState(null);
   const [showChat, setShowChat] = useState(false);
+  const [showModel, setShowModel] = useState(false);
 
   useEffect(() => {
     // Function to read data from the blockchain
@@ -47,6 +48,15 @@ const ReadContract = () => {
   const handleCloseChat = () => {
     setShowChat(false);
     setSelectedAsset(null);
+  };
+
+  const handleViewModel = (e) => {
+    e.preventDefault();
+    setShowModel(true);
+  };
+
+  const handleCloseModel = () => {
+    setShowModel(false);
   };
 
   return (
@@ -92,10 +102,8 @@ const ReadContract = () => {
                   
                   {/* Model URL */}
                   <div className="mb-4">
-                    <a
-                      href={asset.modelUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      onClick={handleViewModel}
                       className="text-pink-500 hover:text-pink-600 flex items-center"
                     >
                       <svg
@@ -112,7 +120,7 @@ const ReadContract = () => {
                         />
                       </svg>
                       View 3D Model
-                    </a>
+                    </button>
                   </div>
 
                   {/* Action Buttons */}
@@ -141,6 +149,42 @@ const ReadContract = () => {
           selectedAsset={selectedAsset}
           onClose={handleCloseChat}
         />
+      )}
+
+      {/* 3D Model Modal */}
+      {showModel && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg w-full max-w-6xl h-[80vh] mx-4">
+            <div className="flex justify-between items-center p-4 border-b">
+              <h3 className="text-lg font-semibold">3D Model Viewer</h3>
+              <button
+                onClick={handleCloseModel}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+            <div className="h-[calc(80vh-4rem)]">
+              <iframe
+                src="http://localhost:51668/"
+                className="w-full h-full"
+                frameBorder="0"
+              />
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
