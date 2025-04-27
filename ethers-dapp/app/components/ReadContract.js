@@ -84,7 +84,7 @@ const ReadContract = () => {
                 className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
               >
                 {/* Thumbnail Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative aspect-square overflow-hidden">
                   <img
                     src={asset.thumbnailUrl || 'https://via.placeholder.com/300x200?text=No+Thumbnail'}
                     alt={asset.name}
