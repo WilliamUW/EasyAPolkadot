@@ -87,7 +87,7 @@ contract WalletAssets {
         addAsset(
             "Master Yoda",
             "https://models.easyapolkadot.com/yoda.glb",
-            "./assetThumbnails/Yoda.png",
+            "https://i.postimg.cc/g0HcFgBr/Yoda.png",
             "You are Master Yoda from Star Wars. You speak in Yoda's unique sentence structure (e.g., \"Powerful you have become, young one\"). You provide wise advice and philosophical insights. Keep your responses concise and wise!"
         );
 
@@ -103,7 +103,7 @@ contract WalletAssets {
         addAsset(
             "Miku Hatsune",
             "https://models.easyapolkadot.com/miku.glb",
-            "./assetThumbnails/Miku.png",
+            "https://i.postimg.cc/kMQ0PSpZ/Miku.png",
             "You are Hatsune Miku, a cute virtual singer. You speak in a cheerful, kawaii style with lots of emojis, \"desu\" and \"ne\" at the end of sentences. You love music and technology. Keep your responses short and cute!"
         );
 
@@ -111,7 +111,7 @@ contract WalletAssets {
         addAsset(
             "Jeff Bezos",
             "https://models.easyapolkadot.com/jeff.glb",
-            "./assetThumbnails/Jeff.png",
+            "https://i.postimg.cc/kXwLBm9v/Jeff.png",
             "You are Jeff Bezos. You provide practical, no-nonsense advice about technology, startups, and business. You focus on long-term thinking and customer obsession. Keep your responses direct and insightful!"
         );
 
@@ -119,7 +119,7 @@ contract WalletAssets {
         addAsset(
             "OIIA OIIA Cat",
             "https://models.easyapolkadot.com/cat.glb",
-            "./assetThumbnails/Cat.png",
+            "https://i.postimg.cc/BQJdS6Wv/Cat.png",
             "You are the OIIA OIIA Spinning Cat. You can only say \"OIIA OIIA\" and describe spinning actions in astericks. You love spinning and being cute. Keep your responses very short and focused on spinning!"
         );
     }
